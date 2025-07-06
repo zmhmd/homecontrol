@@ -173,43 +173,43 @@ static int                _InitDialog;
 static int                _LogoMulX;
 
 static LEVEL _Level[6] = {
-  { { 0, 0, { 35, 650, 164, 780 } }, 0 },
-  { { 0, 0, { 35, 520, 164, 650 } }, 0 },
-  { { 0, 0, { 35, 390, 164, 520 } }, 0 },
-  { { 0, 0, { 35, 260, 164, 390 } }, 0 },
-  { { 0, 0, { 35, 130, 164, 260 } }, 0 },
-  { { 0, 0, { 35,   0, 164, 130 } }, 0 }
+  { { 0, 0, { 35, 650, 35 + 2 * (164 - 35), 650 + 2 * (780 - 650) } }, 0 },  // x1 = 35 + 258 = 293, y1 = 650 + 260 = 910
+  { { 0, 0, { 35, 520, 35 + 2 * (164 - 35), 520 + 2 * (650 - 520) } }, 0 },  // x1 = 293, y1 = 520 + 260 = 780
+  { { 0, 0, { 35, 390, 35 + 2 * (164 - 35), 390 + 2 * (520 - 390) } }, 0 },  // x1 = 293, y1 = 390 + 260 = 650
+  { { 0, 0, { 35, 260, 35 + 2 * (164 - 35), 260 + 2 * (390 - 260) } }, 0 },  // x1 = 293, y1 = 260 + 260 = 520
+  { { 0, 0, { 35, 130, 35 + 2 * (164 - 35), 130 + 2 * (260 - 130) } }, 0 },  // x1 = 293, y1 = 130 + 260 = 390
+  { { 0, 0, { 35,   0, 35 + 2 * (164 - 35),   0 + 2 * (130 - 0) } }, 0 }   // x1 = 293, y1 = 0 + 260 = 260
 };
 
 static ELEVATOR _Elevator = {
-  { 0, 0, { 57, 130, 83, 780 } }, // Elevator
-  { 0, 0, { 57,  82, 83, 125 } }, // Elevator door
+  { { 0, 0, { 57, 130, 57 + 2 * (83 - 57), 130 + 2 * (780 - 130) } }, // Elevator  x1 = 57 + 52 = 109, y1 = 130 + 1300 = 1430
+  { { 0, 0, { 57,  82, 57 + 2 * (83 - 57),  82 + 2 * (125 -  82) } }, // Elevator door x1 = 109, y1 = 82 + 86 = 168
   0, { 0, 0, 0, 0, 0 }, 0, 0, 0, 0, 0, 0
 };
 
-static LOGO   _Logo;
-static OBJECT _Garage         = { 0, 0, {  40, 732,  90, 776 } };
-static OBJECT _Jalousie1      = { 0, 0, { 165, 400, 167, 493 } };
-static OBJECT _Jalousie2      = { 0, 0, {  32, 140,  34, 233 } };
-static OBJECT _Marquee1       = { 0, 0, { 165, 549, 196, 566 } };
-static OBJECT _Marquee2       = { 0, 0, {   3, 289,  34, 306 } };
-static OBJECT _Scroll         = { 0, 0, {   0,   0, 199, 780 } };
-static OBJECT _LogoArrow      = { 0, 0, {  58,  69, 139, 100 } };
-static OBJECT _LogoLarge      = { 0, 0, {  58,  46, 139,  69 } };
-static OBJECT _LogoSmall      = { 0, 0, {   7,   8,  47,  19 } };
-static OBJECT _GarageSmall    = { 0, 0, {  10, 220,  24, 232 } };
-static OBJECT _Jalousie1Small = { 0, 0, {  48, 120,  49, 147 } };
-static OBJECT _Jalousie2Small = { 0, 0, {   6,  42,   7,  69 } };
-static OBJECT _Marquee1Small  = { 0, 0, {  48, 166,  55, 170 } };
-static OBJECT _Marquee2Small  = { 0, 0, {   0,  88,   7,  92 } };
-static OBJECT _ElevatorSmall  = { 0, 0, {  14,  40,  23, 233 } };
+static LOGO   _Logo; // Scaled via LOGOMULX/Y
+static OBJECT _Garage         = { 0, 0, {  40, 732,  40 + 2 * (90 - 40), 732 + 2 * (776 - 732) } }; // x1 = 40 + 100 = 140, y1 = 732 + 88 = 820
+static OBJECT _Jalousie1      = { 0, 0, { 165, 400, 165 + 2 * (167 - 165), 400 + 2 * (493 - 400) } }; // x1 = 165 + 4 = 169, y1 = 400 + 186 = 586
+static OBJECT _Jalousie2      = { 0, 0, {  32, 140,  32 + 2 * (34 - 32), 140 + 2 * (233 - 140) } }; // x1 = 32 + 4 = 36, y1 = 140 + 186 = 326
+static OBJECT _Marquee1       = { 0, 0, { 165, 549, 165 + 2 * (196 - 165), 549 + 2 * (566 - 549) } }; // x1 = 165 + 62 = 227, y1 = 549 + 34 = 583
+static OBJECT _Marquee2       = { 0, 0, {   3, 289,   3 + 2 * (34 - 3), 289 + 2 * (306 - 289) } }; // x1 = 3 + 62 = 65, y1 = 289 + 34 = 323
+static OBJECT _Scroll         = { 0, 0, {   0,   0, 199, 780 } }; // Scroll area, likely should not be visually scaled itself.
+static OBJECT _LogoArrow      = { 0, 0, {  58,  69,  58 + 2 * (139 - 58),  69 + 2 * (100 -  69) } }; // x1 = 58 + 162 = 220, y1 = 69 + 62 = 131
+static OBJECT _LogoLarge      = { 0, 0, {  58,  46,  58 + 2 * (139 - 58),  46 + 2 * (69 -  46) } }; // x1 = 58 + 162 = 220, y1 = 46 + 46 = 92
+static OBJECT _LogoSmall      = { 0, 0, {   7,   8,   7 + 2 * (47 - 7),   8 + 2 * (19 -  8) } }; // x1 = 7 + 80 = 87, y1 = 8 + 22 = 30
+static OBJECT _GarageSmall    = { 0, 0, {  10, 220,  10 + 2 * (24 - 10), 220 + 2 * (232 - 220) } }; // x1 = 10 + 28 = 38, y1 = 220 + 24 = 244
+static OBJECT _Jalousie1Small = { 0, 0, {  48, 120,  48 + 2 * (49 - 48), 120 + 2 * (147 - 120) } }; // x1 = 48 + 2 = 50, y1 = 120 + 54 = 174
+static OBJECT _Jalousie2Small = { 0, 0, {   6,  42,   6 + 2 * (7 - 6),  42 + 2 * (69 -  42) } }; // x1 = 6 + 2 = 8, y1 = 42 + 54 = 96
+static OBJECT _Marquee1Small  = { 0, 0, {  48, 166,  48 + 2 * (55 - 48), 166 + 2 * (170 - 166) } }; // x1 = 48 + 14 = 62, y1 = 166 + 8 = 174
+static OBJECT _Marquee2Small  = { 0, 0, {   0,  88,   0 + 2 * (7 - 0),  88 + 2 * (92 -  88) } }; // x1 = 0 + 14 = 14, y1 = 88 + 8 = 96
+static OBJECT _ElevatorSmall  = { 0, 0, {  14,  40,  14 + 2 * (23 - 14),  40 + 2 * (233 -  40) } }; // x1 = 14 + 18 = 32, y1 = 40 + 386 = 426
 static OBJECT _LightSmall[6] = {
-  { 0, 0, { 8, 195, 48, 234 } },
-  { 0, 0, { 8, 156, 48, 195 } },
-  { 0, 0, { 8, 117, 48, 156 } },
-  { 0, 0, { 8,  78, 48, 117 } },
-  { 0, 0, { 8,  39, 48,  78 } },
-  { 0, 0, { 8,   0, 48,  39 } },
+  { { 0, 0, { 8, 195, 8 + 2 * (48 - 8), 195 + 2 * (234 - 195) } } }, // x1 = 8 + 80 = 88, y1 = 195 + 78 = 273
+  { { 0, 0, { 8, 156, 8 + 2 * (48 - 8), 156 + 2 * (195 - 156) } } }, // x1 = 88, y1 = 156 + 78 = 234
+  { { 0, 0, { 8, 117, 8 + 2 * (48 - 8), 117 + 2 * (156 - 117) } } }, // x1 = 88, y1 = 117 + 78 = 195
+  { { 0, 0, { 8,  78, 8 + 2 * (48 - 8),  78 + 2 * (117 -  78) } } }, // x1 = 88, y1 = 78 + 78 = 156
+  { { 0, 0, { 8,  39, 8 + 2 * (48 - 8),  39 + 2 * (78 -  39) } } }, // x1 = 88, y1 = 39 + 78 = 117
+  { { 0, 0, { 8,   0, 8 + 2 * (48 - 8),   0 + 2 * (39 -  0) } } }, // x1 = 88, y1 = 0 + 78 = 78
 };
 
 /*********************************************************************
@@ -278,23 +278,23 @@ static const GUI_WIDGET_CREATE_INFO _aDialogElev[] = {
 *       Arrows
 */
 static const GUI_POINT _aArrowUp[] = {
-  { 1, 0 }, { 4, 3 }, {  1, 3 }, { 1, 8 }, 
-  { 0, 8 }, { 0, 3 }, { -3, 3 }, { 0, 0 }
+  { 2, 0 }, { 8, 6 }, {  2, 6 }, { 2, 16 },
+  { 0, 16 }, { 0, 6 }, { -6, 6 }, { 0, 0 }
 };
 
 static const GUI_POINT _aArrowDown[] = {
-  { 1, 8 }, { 4, 5 }, {  1, 5 }, { 1, 0 },
-  { 0, 0 }, { 0, 5 }, { -3, 5 }, { 0, 8 }
+  { 2, 16 }, { 8, 10 }, {  2, 10 }, { 2, 0 },
+  { 0, 0 }, { 0, 10 }, { -6, 10 }, { 0, 16 }
 };
 
 static GUI_POINT _aArrowRight[] = {
-  { 0, 0 }, { 5, 0 }, { 5, -3 }, { 8, 0 },
-  { 8, 1 }, { 5, 4 }, { 5, 1  }, { 0, 1 }
+  { 0, 0 }, { 10, 0 }, { 10, -6 }, { 16, 0 },
+  { 16, 2 }, { 10, 8 }, { 10, 2  }, { 0, 2 }
 };
 
 static GUI_POINT _aArrowLeft[] = {
-  { 0, 0 }, { 3, -3 }, { 3, 0 }, { 8, 0 },
-  { 8, 1 }, { 3, 1  }, { 3, 4 }, { 0, 1 }
+  { 0, 0 }, { 6, -6 }, { 6, 0 }, { 16, 0 },
+  { 16, 2 }, { 6, 2  }, { 6, 8 }, { 0, 2 }
 };
 
 /*********************************************************************
@@ -302,11 +302,11 @@ static GUI_POINT _aArrowLeft[] = {
 *       Roof
 */
 static GUI_POINT _aRoof[] = {
-  { 0, 0 }, { 75, 60 }, { -75, 60 }
+  { 0, 0 }, { 150, 120 }, { -150, 120 }
 };
 
 static GUI_POINT _aRoofMini[] = {
-  { 0, 0 }, { 119, 90 }, { -119, 90 }
+  { 0, 0 }, { 238, 180 }, { -238, 180 }
 };
 
 /*********************************************************************
@@ -372,8 +372,8 @@ static GUI_POINT _aRoofMini[] = {
    &_PalLogoNEC  // Pointer to palette
   };
 
-  #define LOGOMULX 1000
-  #define LOGOMULY 1000
+  #define LOGOMULX 2000
+  #define LOGOMULY 2000
 
 #else
 
@@ -472,8 +472,8 @@ static GUI_POINT _aRoofMini[] = {
    &_PalLogoSegger  // Pointer to palette
   };
 
-  #define LOGOMULX 600
-  #define LOGOMULY 600
+  #define LOGOMULX 1200
+  #define LOGOMULY 1200
 
 #endif
 
@@ -990,48 +990,48 @@ static void _DrawElevator(int x, int y, int w, int h, int Level) {
   Color2 = 0x5F * Light / 100 + 0xA0;
   Color2 = (Color2 << 16 | Color2 << 8 | Color2);
   GUI_SetColor(Color2);
-  GUI_FillRect(x + 2, y + 80, x + w - 2, y + h - 2);
+  GUI_FillRect(x + 4, y + 160, x + w - 4, y + h - 4); // Scale offsets and dimensions
   //
   // Draw elevator car
   //
-  yPos   = _Elevator.Itself.ActV - (5 - Level) * 130 + 80;
+  yPos   = _Elevator.Itself.ActV - (5 - Level) * 260 + 160; // Scale level height and offset
   yStart = (yPos < 0) ? -yPos : 0;
-  yEnd   = (yPos > 82) ? 125 - yPos : 43;
-  if (yPos != 80) {
-    y0_ = (yPos > 80) ? yStart + 44 - (yPos - 80) : yStart;
-    y1_ = (yPos > 80) ? yEnd : 79 - yPos;
-    _DrawElevator2(x + 2, y + yPos, w - 4, 43, 0, y0_, w - 4, y1_, 1, Color1);
+  yEnd   = (yPos > 164) ? 250 - yPos : 86; // Scale comparison and values
+  if (yPos != 160) { // Scale comparison
+    y0_ = (yPos > 160) ? yStart + 88 - (yPos - 160) : yStart; // Scale comparison, values
+    y1_ = (yPos > 160) ? yEnd : 158 - yPos; // Scale comparison, value
+    _DrawElevator2(x + 4, y + yPos, w - 8, 86, 0, y0_, w - 8, y1_, 1, Color1); // Scale offsets, width adjustment, height
   }
-  y0_ = (yPos < 80) ? yStart + (80 - yPos) : yStart;
-  y1_ = (yPos > 80) ? 43 - (yPos - 80) : 43;
+  y0_ = (yPos < 160) ? yStart + (160 - yPos) : yStart; // Scale comparison, value
+  y1_ = (yPos > 160) ? 86 - (yPos - 160) : 86;    // Scale comparison, values
   if (_Elevator.Move) {
     GUI_SetColor(Color2);
-    GUI_FillRect(x + 2, y + 80, x + w - 2, y + h - 2);
-    _DrawElevator2(x + 2, y + yPos, w - 4, 43, 0, y0_, w - 4, y1_, 1, Color2);
+    GUI_FillRect(x + 4, y + 160, x + w - 4, y + h - 4); // Scale offsets
+    _DrawElevator2(x + 4, y + yPos, w - 8, 86, 0, y0_, w - 8, y1_, 1, Color2); // Scale offsets, width adjustment, height
   } else {
-    Door = (w - 4) * (100 - _Elevator.Door.ActV) / 100;
-    _DrawElevator2(x + 2, y + yPos, w - 4, 43, 0,        y0_, Door,  y1_, 1, Color2);
-    _DrawElevator2(x + 2, y + yPos, w - 4, 43, Door + 1, y0_, w - 4, y1_, 0, Color2);
+    Door = (w - 8) * (100 - _Elevator.Door.ActV) / 100; // Scale width adjustment
+    _DrawElevator2(x + 4, y + yPos, w - 8, 86, 0,        y0_, Door,  y1_, 1, Color2); // Scale offsets, width adjustment, height
+    _DrawElevator2(x + 4, y + yPos, w - 8, 86, Door + 1, y0_, w - 8, y1_, 0, Color2); // Scale offsets, width adjustment, height
   }
   //
   // Draw door frame (outside)
   //
   Color2 = 0x7F * Light / 100 + 0x50;
   GUI_SetColor(Color2 << 16);
-  _DrawRect(x + 1, y + 79, x + w - 1, y + h - 1, 1);
+  _DrawRect(x + 2, y + 158, x + w - 2, y + h - 2, 1); // Scale offsets (consider pen size too, maybe 2?)
   //
   // Draw level number
   //
   if (_Elevator.Itself.ActV == _Elevator.Itself.NewV &&
-      _Elevator.Itself.ActV == ((5 - Level) * 130)) {
+      _Elevator.Itself.ActV == ((5 - Level) * 260)) { // Scale level height
     GUI_SetColor(0x00FF40);
   } else {
     Color2 = 0x3F * Light / 100 + 0xC0;
     GUI_SetColor(Color2 << 8 | Color2);
   }
-  GUI_SetFont(&GUI_Font8x8);
+  GUI_SetFont(&GUI_Font8x8); // Font size not scaled yet
   GUI_SetTextMode(GUI_TM_TRANS);
-  GUI_DispCharAt(Level + 1 + '0', x + (w / 2) - 3, y + 70);
+  GUI_DispCharAt(Level + 1 + '0', x + (w / 2) - 3, y + 140); // Scale y-offset for text
 }
 
 /*********************************************************************
@@ -1048,9 +1048,9 @@ static void _DrawWindow(int x, int y, int w, int h, int dy, int Light) {
   Color = 0x60 * Light / 100 + 0x9F;
   GUI_SetColor(Color << 16 | Color << 8 | Color);
   GUI_DrawVLine(x, y, y + h);
-  GUI_DrawVLine(x + w / 2, y, y + h);
+  GUI_DrawVLine(x + w / 2, y, y + h); // This can remain w/2 for proportional splitting
   GUI_DrawVLine(x + w, y, y + h);
-  for (i = 0; i < h; i += dy) {
+  for (i = 0; i < h; i += dy) { // dy is scaled by caller
     GUI_DrawHLine(y + i, x, x + w);
   }
   GUI_DrawHLine(y + h, x, x + w);
@@ -1065,14 +1065,14 @@ static void _DrawFrame(int x, int y, int w, int h, int Light) {
 
   Color = 0x88 * Light / 100 + 0x48;
   GUI_SetColor(Color << 16 | Color << 8 | Color);
-  GUI_FillRect(x, y, x + w - 1, y + h - 1);
+  GUI_FillRect(x, y, x + w - 1, y + h - 1); // w and h are scaled by caller
   GUI_SetColor(GUI_WHITE);
-  _DrawRect(x, y, x + w - 1, y + h - 1, 2);
+  _DrawRect(x, y, x + w - 1, y + h - 1, 4); // PenSize scaled (was 2)
   Color = 0xA0 * Light / 100 + 0x5F;
   GUI_SetColor(Color << 16 | Color << 8 | Color);
-  GUI_SetPenSize(1);
-  GUI_DrawLine(x + 2, y + 2, x + w - 2, y + h - 2);
-  GUI_DrawLine(x + w - 2, y + 2, x + 2, y + h - 2);
+  GUI_SetPenSize(2); // PenSize scaled (was 1)
+  GUI_DrawLine(x + 4, y + 4, x + w - 4, y + h - 4); // Offsets scaled
+  GUI_DrawLine(x + w - 4, y + 4, x + 4, y + h - 4); // Offsets scaled
 }
 
 /*********************************************************************
@@ -1083,29 +1083,40 @@ static void _DrawMarquee(int x, int y, int w, int h, int d, int Status) {
   const GUI_RECT * OldClipRect;
   GUI_RECT         ClipRect;
 
-  ClipRect.x0 = (d < 0) ? (x - w - 2) : (x + 1);
-  ClipRect.y0 = y - 1;
-  ClipRect.x1 = (d < 0) ? (x - 1) : (x + w + 2);
-  ClipRect.y1 = y + 61;
+  // Clipping rect needs to account for scaled w and h
+  ClipRect.x0 = (d < 0) ? (x - w - 4) : (x + 2); // Scaled offsets
+  ClipRect.y0 = y - 2;
+  ClipRect.x1 = (d < 0) ? (x - 2) : (x + w + 4);
+  ClipRect.y1 = y + 122; // y + 2 * 61
   OldClipRect = WM_SetUserClipRect(&ClipRect);
-  GUI_AA_SetFactor(4);
+  GUI_AA_SetFactor(4); // This factor might need adjustment based on overall scaling strategy
   GUI_AA_EnableHiRes();
-  x *= 4;
-  y *= 4;
-  w = (w - 2) * (100 - Status) / 25 + 12;
-  w = (d > 0) ? w : -w;
-  h = h * (100 - Status) / 25 + 4;
-  GUI_SetPenSize(3);
+  // x, y, w, h are passed in already scaled by caller (_DrawLevel)
+  // The internal calculations for effective width/height based on status should use the scaled w,h
+  int eff_w = (w - 4) * (100 - Status) / 25 + 24; // (scaled w - 2*2) ... + 2*12
+  eff_w = (d > 0) ? eff_w : -eff_w;
+  int eff_h = h * (100 - Status) / 25 + 8; // ... + 2*4 (original h is small, this scales the dynamic part)
+
+  GUI_SetPenSize(6); // Scaled (was 3)
   GUI_SetPenShape(GUI_PS_ROUND);
   GUI_SetColor(0xA08080);
-  GUI_AA_DrawLine(x + (60 * d), y + 240, x, y + 240); 
+  // Original: x + (60*d), y + 240. If x,y are HiRes, these are large. If not, they need scaling.
+  // Assuming x,y from _DrawLevel are screen coords, then these are also screen coords.
+  // Let's assume the x,y passed to _DrawMarquee are top-left of the marquee area.
+  // The line was relative to this x,y.
+  GUI_AA_DrawLine((x * 4) + (120 * d * 4), (y * 4) + 480, (x*4), (y*4) + 480); // Scale 60 to 120, 240 to 480. Multiply by HiRes Factor.
+
   GUI_SetPenShape(GUI_PS_FLAT);
   GUI_SetColor(0x00C0FF);
-  GUI_AA_DrawLine(x + w, y + h, x, y);
-  GUI_AA_DrawLine(x + w - (3 * d), y + h, x + w - (3 * d), y + h + 20);
+  // eff_w and eff_h are in screen pixels (scaled for 2x). Multiply by AA_FACTOR for HiRes.
+  int aa_factor = 4; // As set by GUI_AA_SetFactor(4)
+  GUI_AA_DrawLine((x * aa_factor) + eff_w * aa_factor, (y * aa_factor) + eff_h * aa_factor, (x * aa_factor), (y * aa_factor));
+  GUI_AA_DrawLine((x * aa_factor) + (eff_w - (6 * d)) * aa_factor, (y * aa_factor) + eff_h * aa_factor, \
+                  (x * aa_factor) + (eff_w - (6 * d)) * aa_factor, (y * aa_factor) + (eff_h + 40) * aa_factor); // Scaled 20 to 40 for the hanging part
   GUI_AA_DisableHiRes();
   WM_SetUserClipRect(OldClipRect);
 }
+
 
 /*********************************************************************
 *
@@ -1113,9 +1124,10 @@ static void _DrawMarquee(int x, int y, int w, int h, int d, int Status) {
 */
 static void _DrawJalousie(int x, int y, int h, int Status) {
   GUI_SetColor(0x0C0FF);
-  GUI_SetPenSize(3);
+  GUI_SetPenSize(6); // Scaled (was 3)
   GUI_SetPenShape(GUI_PS_ROUND);
-  GUI_DrawLine(x, y, x, y + (h * Status / 100) + 2);
+  // h is scaled by caller.
+  GUI_DrawLine(x, y, x, y + (h * Status / 100) + 4); // Scaled offset (was 2)
 }
 
 /*********************************************************************
@@ -1124,18 +1136,21 @@ static void _DrawJalousie(int x, int y, int h, int Status) {
 */
 static void _DrawRoof(int x, int y) {
   GUI_SetBkColor(GUI_BLACK);
-  GUI_ClearRect(35, y - 70, 164, y + 59);
+  // ClearRect: x1 was 164, y_bottom was y+59. Original y-span was 70+59 = 129. New span 140+118 = 258.
+  GUI_ClearRect(70, y - 140, 70 + 2*(164-35), y + 118); // Scaled: 35->70, 70->140, 164-> (70+2*(164-35)) = 328, 59->118
   GUI_SetColor(0xD82000);
-  GUI_AA_SetFactor(3);
-  GUI_AA_FillPolygon(_aRoof, 3, x, y);
+  GUI_AA_SetFactor(3); // Keep factor, points are scaled
+  GUI_AA_FillPolygon(_aRoof, 3, x, y); // _aRoof is scaled. x,y are center, scaled by caller.
   GUI_SetColor(0x0066FF);
   if (_LogoRPM < 0) {
-    GUI_FillPolygon(_aArrowLeft,  8, x - 4, y + 9);
+    // x-4, y+9 becomes x-8, y+18
+    GUI_FillPolygon(_aArrowLeft,  8, x - 8, y + 18); // _aArrowLeft is scaled
   }
   if (_LogoRPM > 0) {
-    GUI_FillPolygon(_aArrowRight, 8, x - 4, y + 9);
+    GUI_FillPolygon(_aArrowRight, 8, x - 8, y + 18); // _aArrowRight is scaled
   }
-  GUI_DrawBitmapEx(&_LogoBitmap, x - 1, y - _Logo.ySize / 2 - 3, _Logo.xCenter, _Logo.yCenter, _LogoMulX, LOGOMULY);
+  // x-1, y - _Logo.ySize/2 -3. _Logo.ySize is effectively doubled.
+  GUI_DrawBitmapEx(&_LogoBitmap, x - 2, y - _Logo.ySize / 2 - 6, _Logo.xCenter, _Logo.yCenter, _LogoMulX, LOGOMULY); // Offsets scaled
 }
 
 /*********************************************************************
@@ -1144,11 +1159,11 @@ static void _DrawRoof(int x, int y) {
 */
 static void _DrawDoor(int x, int y, int w, int h) {
   GUI_SetColor(GUI_BLUE);
-  GUI_FillRect(x, y, x + w, y + h);
+  GUI_FillRect(x, y, x + w, y + h); // w,h scaled by caller
   GUI_SetColor(GUI_BLACK);
-  _DrawRect(x, y, x + w, y + h, 1);
-  GUI_DrawHLine(y + h/2, x + 4, x + 8);
-  GUI_DrawVLine(x + 4, y + h/2 - 1, y + h/2 + 3);
+  _DrawRect(x, y, x + w, y + h, 2); // PenSize scaled (was 1)
+  GUI_DrawHLine(y + h/2, x + 8, x + 16); // Offsets scaled
+  GUI_DrawVLine(x + 8, y + h/2 - 2, y + h/2 + 6); // Offsets scaled
 }
 
 /*********************************************************************
@@ -1157,9 +1172,10 @@ static void _DrawDoor(int x, int y, int w, int h) {
 */
 static void _DrawGarage(int x, int y, int w, int h, int Status) {
   GUI_SetColor(GUI_YELLOW);
-  GUI_FillRect(x, y + 1, x + w, y + ((h - 2) * (100 - Status) / 100) + 1);
+  // h is scaled by caller. (h-2) becomes (h-4)
+  GUI_FillRect(x, y + 2, x + w, y + ((h - 4) * (100 - Status) / 100) + 2); // Scaled y offset and h adjustment
   GUI_SetColor(GUI_BLACK);
-  _DrawRect(x, y, x + w, y + h, 1);
+  _DrawRect(x, y, x + w, y + h, 2); // PenSize scaled (was 1)
 }
 
 /*********************************************************************
@@ -1170,33 +1186,33 @@ static void _DrawSmallLevel(int Level, int x0, int y0_, unsigned Light) {
   GUI_COLOR Color;
   int       i;
 
-  y0_ += (4 - Level) * 39;
+  y0_ += (4 - Level) * 78; // Scaled (was 39)
   //
   // Draw frame of levels (background)
   //
   Color = 0x78 * Light / 100 + 0x58;
   GUI_SetColor(Color << 16 | Color << 8 | Color);
-  GUI_FillRect(x0 + 9, y0_ + 40, x0 + 46, y0_ + 78);
+  GUI_FillRect(x0 + 18, y0_ + 80, x0 + 92, y0_ + 156); // Scaled (9->18, 40->80, 46->92, 78->156)
   //
   // Draw frame of levels (rear bracing)
   //
   Color = 0xA0 * Light / 100 + 0x5F;
   GUI_SetColor(Color << 16 | Color << 8 | Color);
-  GUI_DrawLine(x0 + 9, y0_ +  40, x0 + 46, y0_ +  77);
-  GUI_DrawLine(x0 + 9, y0_ +  77, x0 + 46, y0_ +  40);
+  GUI_DrawLine(x0 + 18, y0_ +  80, x0 + 92, y0_ +  154); // Scaled (9->18, 40->80, 46->92, 77->154)
+  GUI_DrawLine(x0 + 18, y0_ +  154, x0 + 92, y0_ +  80); // Scaled (9->18, 77->154, 46->92, 40->80)
   //
   // Draw windows
   //
   Color = 0x80 * Light / 100 + 0x7F;
   GUI_SetColor(Color << 16);
-  GUI_FillRect(x0 + 32, y0_ +  42, x0 + 40, y0_ +  75);
+  GUI_FillRect(x0 + 64, y0_ +  84, x0 + 80, y0_ +  150); // Scaled (32->64, 42->84, 40->80, 75->150)
   Color = 0x60 * Light / 100 + 0x9F;
   GUI_SetColor(Color << 16 | Color << 8 | Color);
-  GUI_DrawVLine(x0 + 31, y0_ + 41, y0_ + 76);
-  GUI_DrawVLine(x0 + 36, y0_ + 41, y0_ + 76);
-  GUI_DrawVLine(x0 + 41, y0_ + 41, y0_ + 76);
-  for (i = 0; i < ((Level) ? 8 : 5); i++) {
-    GUI_DrawHLine(y0_ + (i * 5) + 41, x0 + 31, x0 + 40);
+  GUI_DrawVLine(x0 + 62, y0_ + 82, y0_ + 152); // Scaled (31->62, 41->82, 76->152)
+  GUI_DrawVLine(x0 + 72, y0_ + 82, y0_ + 152); // Scaled (36->72, 41->82, 76->152)
+  GUI_DrawVLine(x0 + 82, y0_ + 82, y0_ + 152); // Scaled (41->82, 41->82, 76->152)
+  for (i = 0; i < ((Level) ? 8 : 5); i++) { // Loop count remains
+    GUI_DrawHLine(y0_ + (i * 10) + 82, x0 + 62, x0 + 80); // Scaled (5->10, 41->82, 31->62, 40->80)
   }
   //
   // Draw elevator shaft
@@ -1205,10 +1221,10 @@ static void _DrawSmallLevel(int Level, int x0, int y0_, unsigned Light) {
   Color += (0x7F * Light / 100 + 0x0) << 8;
   Color += (0x6F * Light / 100 + 0x20);
   GUI_SetColor(Color);
-  GUI_FillRect(x0 + 14, y0_ +  40, x0 + 23, y0_ +  77);
+  GUI_FillRect(x0 + 28, y0_ +  80, x0 + 46, y0_ +  154); // Scaled (14->28, 40->80, 23->46, 77->154)
   Color = 0x5F * Light / 100 + 0xA0;
   GUI_SetColor(Color << 16 | Color << 8 | Color);
-  GUI_FillRect(x0 + 15, y0_ +  64, x0 + 22, y0_ +  76);
+  GUI_FillRect(x0 + 30, y0_ +  128, x0 + 44, y0_ +  152); // Scaled (15->30, 64->128, 22->44, 76->152)
 }
 
 /*********************************************************************
@@ -1218,18 +1234,18 @@ static void _DrawSmallLevel(int Level, int x0, int y0_, unsigned Light) {
 static void _DrawSmallElevatorDoor(int Level, int x0, int y0_, int Light) {
   GUI_COLOR Color;
 
-  y0_    += (4 - Level) * 39;
+  y0_    += (4 - Level) * 78; // Scaled (was 39)
   Color  = 0x7F * Light / 100 + 0x50;
   GUI_SetColor(Color << 16);
-  _DrawRect(x0 + 14, y0_ + 63, x0 + 23, y0_ +  77, 1);
+  _DrawRect(x0 + 28, y0_ + 126, x0 + 46, y0_ +  154, 1); // Scaled (14->28, 63->126, 23->46, 77->154). PenSize could be 2.
   if (_Elevator.Itself.ActV == _Elevator.Itself.NewV &&
-      _Elevator.Itself.ActV == ((5 - Level) * 130)) {
+      _Elevator.Itself.ActV == ((5 - Level) * 260)) { // Scaled (was 130)
     GUI_SetColor(0x00FF60);
   } else {
     Color = 0x2F * Light / 100 + 0xD0;
     GUI_SetColor(Color << 8 | Color);
   }
-  GUI_DrawHLine(y0_ + 61, x0 + 18, x0 + 19);
+  GUI_DrawHLine(y0_ + 122, x0 + 36, x0 + 38); // Scaled (61->122, 18->36, 19->38)
 }
 
 /*********************************************************************
@@ -1258,32 +1274,32 @@ static int _DrawRotateLogo(void) {
 */
 static void _DrawLevel(int n, int y) {
   if (n != 5) {
-    _DrawFrame(35, y, 129, 129, _Level[n].Light.ActV);
-    _DrawElevator(55, y + 2, 30, 125, n);
+    _DrawFrame(70, y, 258, 258, _Level[n].Light.ActV); // Scaled: 35->70, 129->258 (x2)
+    _DrawElevator(110, y + 4, 60, 250, n); // Scaled: 55->110, y+2->y+4, 30->60, 125->250
     if (n != 0) {
-      _DrawWindow(115, y + 5, 30, 119, 17, _Level[n].Light.ActV);
+      _DrawWindow(230, y + 10, 60, 238, 34, _Level[n].Light.ActV); // Scaled: 115->230, y+5->y+10, 30->60, 119->238, 17->34 (dy)
     }
   }
   switch (n) {
   case 0:
-    _DrawWindow(115, y + 5, 30, 76, 17, _Level[0].Light.ActV);
-    _DrawDoor(115, y + 82, 30, 45);
-    _DrawGarage(40, y + 82, 50, 45, _Garage.ActV);
+    _DrawWindow(230, y + 10, 60, 152, 34, _Level[0].Light.ActV); // Scaled: 115->230, y+5->y+10, 30->60, 76->152, 17->34 (dy)
+    _DrawDoor(230, y + 164, 60, 90); // Scaled: 115->230, y+82->y+164, 30->60, 45->90
+    _DrawGarage(80, y + 164, 100, 90, _Garage.ActV); // Scaled: 40->80, y+82->y+164, 50->100, 45->90
     break;
   case 1:
-    _DrawMarquee(164, y + 30, 30, 10, 1, _Marquee1.ActV);
+    _DrawMarquee(328, y + 60, 60, 20, 1, _Marquee1.ActV); // Scaled: 164->328, y+30->y+60, 30->60, 10->20
     break;
   case 2:
-    _DrawJalousie(166, y + 10, 90, _Jalousie1.ActV);
+    _DrawJalousie(332, y + 20, 180, _Jalousie1.ActV); // Scaled: 166->332, y+10->y+20, 90->180
     break;
   case 3:
-    _DrawMarquee(35, y + 30, 30, 10, -1, _Marquee2.ActV);
+    _DrawMarquee(70, y + 60, 60, 20, -1, _Marquee2.ActV); // Scaled: 35->70, y+30->y+60, 30->60, 10->20
     break;
   case 4:
-    _DrawJalousie(33, y + 10, 90, _Jalousie2.ActV);
+    _DrawJalousie(66, y + 20, 180, _Jalousie2.ActV); // Scaled: 33->66, y+10->y+20, 90->180
     break;
   case 5:
-    _DrawRoof(99, y + 70);
+    _DrawRoof(198, y + 140); // Scaled: 99->198, y+70->y+140
   }
 }
 
@@ -1299,12 +1315,23 @@ static void _DrawHouseMap(int x0, int y0_) {
   //
   // Draw roof of house
   //
-  GUI_AA_SetFactor(5);
+  GUI_AA_SetFactor(5); // Keep HiRes factor
   GUI_AA_EnableHiRes();
   GUI_SetColor(0xD82000);
-  GUI_AA_FillPolygon(_aRoofMini, 3, (x0 * 5) + 138, (y0_ * 5) + 105);
+  // _aRoofMini is scaled. The offsets for x,y of FillPolygon might need adjustment if x0,y0 are absolute screen.
+  // Assuming (x0*5)+138 was a calculation to center/position the HiRes polygon.
+  // If _aRoofMini itself is 2x, its effective span doubles.
+  // The original offsets 138, 105 might need to be ~2x if they are relative to a fixed point for the map.
+  // Or, if x0,y0 are the top-left of the map area, and the map area itself should scale, then x0,y0 might change.
+  // For now, let's assume the map area itself does not move or get larger, only its contents.
+  // So the HiRes positioning might need to be relative to the new scaled _aRoofMini.
+  // The x,y for GUI_AA_FillPolygon is the center. Original center was (x0*5)+138.
+  // Let's try scaling these offsets directly for now.
+  GUI_AA_FillPolygon(_aRoofMini, 3, (x0 * 5) + (138 * 2), (y0_ * 5) + (105 * 2));
   GUI_AA_DisableHiRes();
-  GUI_DrawBitmapEx(&_LogoBitmap, x0 + 28, y0_ + 18 - _Logo.ySize / 4, _Logo.xCenter, _Logo.yCenter, _LogoMulX / 2, LOGOMULY / 2);
+  // Scaled _LogoBitmap will be drawn. _LogoMulX/Y are doubled. /2 makes it 1x of the new main logo size.
+  // Offsets x0+28, y0_+18 become x0+56, y0_+36.
+  GUI_DrawBitmapEx(&_LogoBitmap, x0 + 56, y0_ + 36 - _Logo.ySize / 4, _Logo.xCenter, _Logo.yCenter, _LogoMulX / 2, LOGOMULY / 2);
   //
   // Draw levels
   //
@@ -1315,82 +1342,111 @@ static void _DrawHouseMap(int x0, int y0_) {
   // Draw elevator car
   //
   GUI_SetColor(0xD0D0D0);
-  ElevatorY = y0_ + (int)((double)(_Elevator.Itself.ActV) / (10.0 / 3.0)) + 25;
-  GUI_FillRect(x0 + 15, ElevatorY, x0 + 22, ElevatorY + 12);
+  // Elevator.Itself.ActV is already in scaled units if level heights (130->260) are used.
+  // The divisor (10.0 / 3.0) is a ratio for map scale, should remain.
+  // Offset +25 becomes +50. Height 12 becomes 24.
+  // x0+15 -> x0+30, x0+22 -> x0+44
+  ElevatorY = y0_ + (int)((double)(_Elevator.Itself.ActV) / (10.0 / 3.0)) + 50;
+  GUI_FillRect(x0 + 30, ElevatorY, x0 + 44, ElevatorY + 24);
   //
   // Draw elevator doors
   //
   for (i = 0; i < 5; i++) {
-    _DrawSmallElevatorDoor(i, x0, y0_, _Level[i].Light.ActV);
+    _DrawSmallElevatorDoor(i, x0, y0_, _Level[i].Light.ActV); // This function's internals are scaled
   }
   //
-  // Draw door
+  // Draw door (_GarageSmall etc. rects are scaled, these are offsets from x0,y0 of map)
   //
   GUI_SetColor(GUI_BLUE);
-  GUI_FillRect(x0 + 32, y0_ + 220, x0 + 40, y0_ + 232);
+  GUI_FillRect(x0 + 64, y0_ + 440, x0 + 80, y0_ + 464); // 32->64, 220->440, 40->80, 232->464
   GUI_SetColor(GUI_BLACK);
-  _DrawRect(x0 + 31, y0_ + 219, x0 + 41, y0_ + 233, 1);
+  _DrawRect(x0 + 62, y0_ + 438, x0 + 82, y0_ + 466, 1); // 31->62, 219->438, 41->82, 233->466. PenSize?
   GUI_SetColor(0x707070);
-  GUI_DrawHLine(y0_ + 219, x0 + 31, x0 + 41);
+  GUI_DrawHLine(y0_ + 438, x0 + 62, x0 + 82); // 219->438, 31->62, 41->82
   //
   // Draw Garage
   //
-  Status = ((100 - _Garage.ActV) * 12 / 100);
+  Status = ((100 - _Garage.ActV) * 24 / 100); // Original height was 12, now 24
   GUI_SetColor(GUI_YELLOW);
-  GUI_FillRect(x0 + 10, y0_ + 220, x0 + 24, y0_ + 220 + Status);
+  GUI_FillRect(x0 + 20, y0_ + 440, x0 + 48, y0_ + 440 + Status); // 10->20, 220->440, 24->48
   GUI_SetColor(GUI_BLACK);
-  _DrawRect(x0 + 9, y0_ + 219, x0 + 25, y0_ + 233, 1);
+  _DrawRect(x0 + 18, y0_ + 438, x0 + 50, y0_ + 466, 1); // 9->18, 219->438, 25->50, 233->466. PenSize?
   //
   // Draw Jalousie 1
   //
-  Status = (_Jalousie1.ActV * 23 / 100);
+  Status = (_Jalousie1.ActV * 46 / 100); // Original height 23, now 46
   GUI_SetColor(0x00C0FF);
-  GUI_DrawVLine(x0 + 48, y0_ + 120, y0_ + 124 + Status);
+  GUI_DrawVLine(x0 + 96, y0_ + 240, y0_ + 248 + Status); // 48->96, 120->240, 124->248
   GUI_SetColor(0x006C90);
-  GUI_DrawVLine(x0 + 49, y0_ + 120, y0_ + 124 + Status);
+  GUI_DrawVLine(x0 + 98, y0_ + 240, y0_ + 248 + Status); // 49->98
   //
   // Draw Jalousie 2
   //
-  Status = (_Jalousie2.ActV * 23 / 100);
+  Status = (_Jalousie2.ActV * 46 / 100); // Original height 23, now 46
   GUI_SetColor(0x00C0FF);
-  GUI_DrawVLine(x0 + 7, y0_ + 42, y0_ + 46 + Status);
+  GUI_DrawVLine(x0 + 14, y0_ + 84, y0_ + 92 + Status); // 7->14, 42->84, 46->92
   GUI_SetColor(0x006C90);
-  GUI_DrawVLine(x0 + 6, y0_ + 42, y0_ + 46 + Status);
+  GUI_DrawVLine(x0 + 12, y0_ + 84, y0_ + 92 + Status); // 6->12
   //
-  // Draw Marquee 1
-  //
+  // Draw Marquee 1 (These are drawn with HiRes, absolute coords? Or relative to x0,y0?)
+  // Original: GUI_AA_DrawLine(240, 835, 240 + Status, (int)(835 + Status / 2.5));
+  // Status: ((100 - _Marquee1.ActV) * 28 / 100) + 5; -> range 5 to 33. New: *56/100 + 10 -> range 10 to 66
+  // Assuming these coordinates are absolute HiRes.
   GUI_AA_SetFactor(5);
   GUI_AA_EnableHiRes();
-  GUI_SetPenSize(2);
-  Status = ((100 - _Marquee1.ActV) * 28 / 100) + 5;
+  GUI_SetPenSize(4); // Scaled (was 2)
+  Status = ((100 - _Marquee1.ActV) * 56 / 100) + 10; // Scale 28->56, 5->10
   GUI_SetColor(0x0C0FF);
-  GUI_AA_DrawLine(240, 835, 240 + Status, (int)(835 + Status / 2.5));
+  // Scale original absolute coords for HiRes.
+  // (240, 835) -> (480, 1670) approx. This needs careful thought on how HiRes works with overall scaling.
+  // For now, assume the coordinates passed to GUI_AA_DrawLine are already in the desired final scale.
+  // Let's assume the original coordinates were pixel coordinates, and HiRes factor just increases precision.
+  // So, we scale the pixel coordinates first.
+  // x0_m1 = 240 (orig), y0_m1 = 835 (orig) -> scaled: 480, 1670
+  // The line was from (x0_m1, y0_m1) to (x0_m1 + Status, y0_m1 + Status/2.5)
+  // This is complex. Let's adjust the constants relative to x0,y0 of the map for Marquee1Small.
+  // _Marquee1Small: {  48, 166,  55, 170 } becomes {96, 332, 110, 340 }
+  // Original HiRes draw for marquee 1: GUI_AA_DrawLine(240, 835, ...). (240 = 48*5, 835 approx 167*5).
+  // This means original coords were relative to map objects.
+  int mx1 = (x0 + 96) * 5; // Scaled x0 of Marquee1Small * HiRes Factor
+  int my1 = (y0_ + 332) * 5; // Scaled y0 of Marquee1Small * HiRes Factor
+  GUI_AA_DrawLine(mx1, my1, mx1 + Status*5, my1 + (int)(Status*5 / 2.5)); // Status is already pixel-scaled for 2x
+
   GUI_SetColor(0xA08080);
-  GUI_DrawHLine(183, 47, 51);
-  GUI_DrawHLine(184, 47, 51);
+  // Original HLines: GUI_DrawHLine(183, 47, 51); GUI_DrawHLine(184, 47, 51);
+  // These are likely absolute HiRes coordinates. Scale them.
+  GUI_DrawHLine(183*2, 47*2, 51*2);
+  GUI_DrawHLine(184*2, 47*2, 51*2);
+
   //
   // Draw Marquee 2
-  //
-  Status = ((100 - _Marquee2.ActV) * 28 / 100) + 5;
+  // _Marquee2Small: {0, 88, 7, 92} becomes {0, 176, 14, 184}
+  Status = ((100 - _Marquee2.ActV) * 56 / 100) + 10; // Scaled
   GUI_SetColor(0x0C0FF);
-  GUI_AA_DrawLine(40, 445, 40 - Status, (int)(445 + Status / 2.5));
+  // Original: GUI_AA_DrawLine(40, 445, 40 - Status, (int)(445 + Status / 2.5));
+  // (40 = approx 7*5, 445 = 89*5)
+  int mx2 = (x0 + 0) * 5; // Scaled x0 of Marquee2Small * HiRes Factor (adjust if it's not 0 for this marquee)
+  int my2 = (y0_ + 176) * 5; // Scaled y0 of Marquee2Small * HiRes Factor
+  GUI_AA_DrawLine(mx2 + (7*5), my2 + (2*5) , mx2 + (7*5) - Status*5, my2 + (2*5) + (int)(Status*5 / 2.5)); // Anchor point adjusted
+
   GUI_SetColor(0xA08080);
-  GUI_DrawHLine(105, 4, 8);
-  GUI_DrawHLine(106, 4, 8);
-  GUI_SetPenSize(1);
+  // Original HLines: GUI_DrawHLine(105, 4, 8); GUI_DrawHLine(106, 4, 8); Scale them.
+  GUI_DrawHLine(105*2, 4*2, 8*2);
+  GUI_DrawHLine(106*2, 4*2, 8*2);
+  GUI_SetPenSize(2); // Scaled (was 1)
   GUI_AA_DisableHiRes();
   //
   // Draw frame of levels (front bracing)
   //
   GUI_SetColor(0xFFFFFF);
-  GUI_DrawVLine(x0 +  8, y0_ + 39, y0_ + 234);
-  GUI_DrawVLine(x0 + 47, y0_ + 39, y0_ + 234);
-  GUI_DrawHLine(y0_ +  39, x0 + 9, x0 + 46);
-  GUI_DrawHLine(y0_ +  78, x0 + 9, x0 + 46);
-  GUI_DrawHLine(y0_ + 117, x0 + 9, x0 + 46);
-  GUI_DrawHLine(y0_ + 156, x0 + 9, x0 + 46);
-  GUI_DrawHLine(y0_ + 195, x0 + 9, x0 + 46);
-  GUI_DrawHLine(y0_ + 234, x0 + 9, x0 + 46);
+  GUI_DrawVLine(x0 +  16, y0_ +  78, y0_ + 468); // Scaled: 8->16, 39->78, 234->468
+  GUI_DrawVLine(x0 +  94, y0_ +  78, y0_ + 468); // Scaled: 47->94
+  GUI_DrawHLine(y0_ +  78, x0 + 18, x0 + 92);  // Scaled: 39->78, 9->18, 46->92
+  GUI_DrawHLine(y0_ + 156, x0 + 18, x0 + 92);  // Scaled: 78->156
+  GUI_DrawHLine(y0_ + 234, x0 + 18, x0 + 92);  // Scaled: 117->234
+  GUI_DrawHLine(y0_ + 312, x0 + 18, x0 + 92);  // Scaled: 156->312
+  GUI_DrawHLine(y0_ + 390, x0 + 18, x0 + 92);  // Scaled: 195->390
+  GUI_DrawHLine(y0_ + 468, x0 + 18, x0 + 92);  // Scaled: 234->468
 }
 
 /*********************************************************************
@@ -1425,7 +1481,7 @@ static void _ElevatorCloseDoor(void) {
 */
 static void _ElevatorMoveTo(int Level) {
   if (Level < 5) {
-    _Elevator.Itself.NewV = (5 - Level) * 130;
+    _Elevator.Itself.NewV = (5 - Level) * 260; // Scaled level height
     _Elevator.Move = (_Elevator.Itself.ActV > _Elevator.Itself.NewV) ? 1 : -1;
     WM_InvalidateWindow(_Elevator.Handle);
     _SerialSendCommand("LIFT", Level, -1);
@@ -1480,7 +1536,7 @@ static void _ElevatorDelLevel(int Level) {
 *       _ElevatorGetLevel
 */
 static void _ElevatorGetLevel(void) {
-  _Elevator.Level = 5 - ((_Elevator.Itself.ActV + 65) / 130);
+  _Elevator.Level = 5 - ((_Elevator.Itself.ActV + 130) / 260); // Scaled offsets and divisor
   if (_Elevator.Level != _Elevator.LastLevel) {
     WM_InvalidateWindow(_Elevator.Handle);
     _Elevator.LastLevel = _Elevator.Level;
@@ -1497,11 +1553,11 @@ static void _ElevatorOptimize(void) {
   int Diff;
   int i;
 
-  EndLevel = 5 - (_Elevator.Itself.NewV / 130);
+  EndLevel = 5 - (_Elevator.Itself.NewV / 260); // Scaled divisor
   if (_Elevator.Itself.ActV < _Elevator.Itself.NewV) {
-    Level = (5 - ((_Elevator.Itself.ActV + 130) / 130));
+    Level = (5 - ((_Elevator.Itself.ActV + 260) / 260)); // Scaled offset and divisor
   } else {
-    Level = (5 - ((_Elevator.Itself.ActV - 1) / 130));
+    Level = (5 - ((_Elevator.Itself.ActV - 1) / 260)); // Scaled divisor
   }
   Diff = (Level < EndLevel) ? 1 : -1;
   for (i = Level; i != EndLevel; i += Diff) {
@@ -1539,7 +1595,7 @@ static void _ElevatorMove(int Level) {
   int yPos;
 
   if (_Level[Level].Elevator == 0) {
-    yPos = (5 - Level) * 130;
+    yPos = (5 - Level) * 260; // Scaled level height
     if (yPos != _Elevator.Itself.ActV || _Elevator.Itself.ActV != _Elevator.Itself.NewV) {
       _ElevatorAddLevel(Level);
     } else {
@@ -1654,7 +1710,7 @@ static void _cbReceiveCommand(const char * pStr, int v1, int v2) {
     }
     if (strcmp(pStr, "SHOW") == 0) {
       if (v1 >= 0 && v1 <= 5) {
-        _Scroll.NewV = 650 - v1 * 130;
+        _Scroll.NewV = 1300 - v1 * 260; // Scaled total scroll and level height
         _ScrollPrevTime = GUI_GetTime();
       }
       return;
@@ -1773,8 +1829,11 @@ static void _cbWinMap(WM_MESSAGE * pMsg) {
     if (TouchState.Pressed) {
       x = TouchState.x - WM_GetWindowOrgX(pMsg->hWin);
       y = TouchState.y - WM_GetWindowOrgY(pMsg->hWin);
-      if (x >= 0 && x <= 50 && y >= 0 && y <= 233) {
-        _Scroll.NewV = 650 - 130 * (5 - (y / 39));
+      // Window size is now 114x470. Original touch was 50x233.
+      if (x >= 0 && x <= (57*2-1) && y >= 0 && y <= (235*2-1)) {
+        // Level height on map was 39px, now 78px.
+        // Scroll parameters scaled: 650->1300, 130->260
+        _Scroll.NewV = 1300 - 260 * (5 - (y / 78));
         _ScrollPrevTime = GUI_GetTime();
       }
     }
@@ -2027,9 +2086,9 @@ static void _NEC_Demo(void) {
   //
   // Create a framewin for the house
   //
-  FRAMEWIN_SetDefaultCaptionSize(14);
-  FRAMEWIN_SetDefaultFont(&GUI_Font10_1);
-  hFrame = FRAMEWIN_Create("House", 0, WM_CF_SHOW, 100, 28, 217, 151);
+  FRAMEWIN_SetDefaultCaptionSize(28); // Scaled (was 14)
+  FRAMEWIN_SetDefaultFont(&GUI_Font10_1); // Font not scaled for caption yet
+  hFrame = FRAMEWIN_Create("House", 0, WM_CF_SHOW, 100, 28, 434, 302); // Scaled (was 217, 151)
   FRAMEWIN_SetMoveable (hFrame, 1);
   FRAMEWIN_AddMinButton(hFrame, FRAMEWIN_BUTTON_RIGHT, 0);
   //
@@ -2038,13 +2097,13 @@ static void _NEC_Demo(void) {
   _hWinHouse = WM_GetClientWindow(hFrame);
   WM_SetCallback(_hWinHouse, _cbWinHouse);
   _hScroll = SCROLLBAR_CreateAttached(_hWinHouse, SCROLLBAR_CF_VERTICAL);
-  SCROLLBAR_SetNumItems(_hScroll, 780);
-  SCROLLBAR_SetPageSize(_hScroll, 130);
-  SCROLLBAR_SetValue   (_hScroll, 650);
+  SCROLLBAR_SetNumItems(_hScroll, 1560); // Scaled (was 780)
+  SCROLLBAR_SetPageSize(_hScroll, 260);  // Scaled (was 130)
+  SCROLLBAR_SetValue   (_hScroll, 1300); // Scaled (was 650)
   //
   // Create a framewin for the controls
   //
-  _hWinControl = FRAMEWIN_Create("Control", 0, WM_CF_SHOW, 100, 5, 130, 181);
+  _hWinControl = FRAMEWIN_Create("Control", 0, WM_CF_SHOW, 100, 5, 130, 181); // Positions/size of control window not scaled
   FRAMEWIN_SetMoveable (_hWinControl, 1);
   FRAMEWIN_AddMinButton(_hWinControl, FRAMEWIN_BUTTON_RIGHT, 0);
   FRAMEWIN_Minimize    (_hWinControl);
@@ -2053,32 +2112,26 @@ static void _NEC_Demo(void) {
   //
   _hWinControl  = WM_GetClientWindow(_hWinControl);
   _pfcbFrameWin = WM_SetCallback    (_hWinControl, _cbWinControl);
-  hMultiPage    = MULTIPAGE_CreateEx(3, 4, 117, 153, _hWinControl, WM_CF_SHOW, 0, 0);
+  hMultiPage    = MULTIPAGE_CreateEx(3, 4, 117, 153, _hWinControl, WM_CF_SHOW, 0, 0); // Control elements not scaled
   _hDialogLight = _AddDialog("Light", ARRAY(_aDialogLight), _cbDialogLight, hMultiPage);
   _AddDialog("Misc",  ARRAY(_aDialogMisc), _cbDialogMisc, hMultiPage);
   _AddDialog("Elev.", ARRAY(_aDialogElev), _cbDialogElev, hMultiPage);
   MULTIPAGE_SelectPage(hMultiPage, 0);
   //
   // Create a window for the house map
-  //
-  _hWinMap = WM_CreateWindow(0, 3, 57, 235, WM_CF_SHOW, _cbWinMap, 0);
+  // Map window size needs to be ~2x if its content is 2x.
+  // Original: 57x235. New: 114x470 (approx)
+  _hWinMap = WM_CreateWindow(0, 3, 57 * 2, 235 * 2, WM_CF_SHOW, _cbWinMap, 0);
   //
   // Init some values
   //
   _Logo.xCenter         = ((_LogoBitmap.XSize / 2) - 1);
   _Logo.yCenter         = ((_LogoBitmap.YSize / 2) - 1);
-  _Logo.xSize           = _LogoBitmap.XSize * LOGOMULX / 1000;
-  _Logo.ySize           = _LogoBitmap.YSize * LOGOMULY / 1000;
-  _LogoLarge.Rect.x0    =  98 - _Logo.xSize / 2;
-  _LogoLarge.Rect.y0    =  67 - _Logo.ySize;
-  _LogoLarge.Rect.x1    = 100 + _Logo.xSize / 2;
-  _LogoLarge.Rect.y1    =  69;
-  _LogoSmall.Rect.x0    =  26 - _Logo.xSize / 4;
-  _LogoSmall.Rect.y0    =  18 - _Logo.ySize / 2;
-  _LogoSmall.Rect.x1    =  28 + _Logo.xSize / 4;
-  _LogoSmall.Rect.y1    =  19;
-  _Elevator.Itself.ActV = 650;
-  _Elevator.Itself.NewV = 650;
+  _Logo.xSize           = _LogoBitmap.XSize * LOGOMULX / 1000; // LOGOMULX is doubled
+  _Logo.ySize           = _LogoBitmap.YSize * LOGOMULY / 1000; // LOGOMULY is doubled
+  // _LogoLarge and _LogoSmall Rects are already scaled in their definition
+  _Elevator.Itself.ActV = 1300; // Scaled (was 650)
+  _Elevator.Itself.NewV = 1300; // Scaled (was 650)
   //
   // Init the serial interface
   //
